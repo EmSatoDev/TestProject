@@ -1,0 +1,189 @@
+# TestProject - スクラム開発設定
+
+# プロジェクト基本情報
+project:
+  name: "TestProject"
+  description: "AIエージェントを活用したスクラム開発プロジェクト"
+  version: "1.0.0"
+  start_date: "2024-01-15"
+
+# スプリント設定
+sprint:
+  length: 14  # 日数
+  working_days: 10  # 営業日
+  start_time: "09:00"
+  end_time: "18:00"
+  timezone: "Asia/Tokyo"
+
+# チーム設定
+team:
+  size: 5
+  roles:
+    - "Product Owner"
+    - "Scrum Master"
+    - "Developer"
+    - "Tester"
+    - "Designer"
+
+# ベロシティ・品質目標
+targets:
+  velocity: 50  # ストーリーポイント/スプリント
+  quality_threshold: 0.8
+  test_coverage_threshold: 0.8
+  code_review_threshold: 1  # 最低レビュー人数
+  bug_density_threshold: 0.1  # bugs/KLOC
+
+# AIエージェント設定
+ai_agents:
+  automation_level: "high"  # low/medium/high
+  
+  development_agent:
+    enabled: true
+    schedule: "continuous"
+    quality_threshold: 0.8
+    auto_commit: false
+    auto_test: true
+  
+  testing_agent:
+    enabled: true
+    schedule: "on_commit"
+    test_types:
+      - "unit"
+      - "integration"
+      - "e2e"
+    coverage_threshold: 0.8
+  
+  documentation_agent:
+    enabled: true
+    schedule: "daily"
+    auto_update: true
+    formats:
+      - "markdown"
+      - "html"
+      - "pdf"
+  
+  progress_tracking_agent:
+    enabled: true
+    schedule: "daily"
+    update_time: "18:00"
+    alert_threshold: 0.2  # 20%の乖離でアラート
+
+# 通知・アラート設定
+notifications:
+  slack:
+    enabled: false
+    webhook_url: ""
+    channels:
+      - "#development"
+      - "#scrum-updates"
+  
+  email:
+    enabled: false
+    smtp_server: ""
+    recipients:
+      - "team@example.com"
+  
+  alerts:
+    burndown_deviation: 0.2  # 20%
+    test_coverage_drop: 0.1  # 10%
+    build_failure_count: 3
+    overdue_pbi: true
+
+# 品質ゲート設定
+quality_gates:
+  code_quality:
+    sonarqube:
+      enabled: false
+      server_url: ""
+      quality_gate: "default"
+    
+    eslint:
+      enabled: true
+      config: ".eslintrc.js"
+    
+    prettier:
+      enabled: true
+      config: ".prettierrc"
+  
+  security:
+    dependency_check: true
+    vulnerability_scan: true
+    secret_detection: true
+  
+  performance:
+    load_testing: false
+    performance_budget: true
+    lighthouse_score: 90
+
+# レポート設定
+reports:
+  daily_standup:
+    enabled: true
+    time: "09:00"
+    template: "docs/templates/daily-standup-template.md"
+  
+  progress_dashboard:
+    enabled: true
+    update_frequency: "daily"
+    template: "docs/templates/progress-dashboard-template.md"
+  
+  sprint_review:
+    enabled: true
+    auto_generate: true
+    include_metrics: true
+  
+  burndown_chart:
+    enabled: true
+    update_frequency: "daily"
+    format: ["png", "svg"]
+
+# ファイルパス設定
+paths:
+  docs_root: "docs/"
+  templates: "docs/templates/"
+  product_backlog: "docs/product-backlog/"
+  sprints: "docs/sprints/"
+  burndown_charts: "docs/burndown-charts/"
+  velocity_tracking: "docs/velocity-tracking/"
+  metrics: "docs/metrics/"
+  ai_agents: "docs/ai-agents/"
+  automation: "docs/automation/"
+
+# 統合設定
+integrations:
+  github:
+    enabled: false
+    repository: ""
+    branch_protection: true
+  
+  jira:
+    enabled: false
+    server_url: ""
+    project_key: ""
+  
+  confluence:
+    enabled: false
+    server_url: ""
+    space_key: ""
+
+# 環境設定
+environments:
+  development:
+    auto_deploy: true
+    test_coverage_required: 0.7
+  
+  staging:
+    auto_deploy: false
+    test_coverage_required: 0.8
+    performance_test: true
+  
+  production:
+    auto_deploy: false
+    test_coverage_required: 0.9
+    security_scan: true
+    performance_test: true
+
+---
+# 設定ファイル更新履歴
+# 2024-01-15: 初期設定作成
+# 2024-01-XX: [更新内容] 

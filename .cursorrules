@@ -1,0 +1,170 @@
+# CursorAI UserRules - Scrum Development Project
+
+## Project Overview
+This project adopts Scrum development methodology with AI agent integration.
+Document structure is managed within the `docs/` folder, and all development work is executed based on PBI (Product Backlog Items).
+
+## Development Rules
+
+### 1. PBI-Based Development
+- Always check the corresponding PBI file (`docs/product-backlog/PBI-XXX_feature-name.md`) before developing new features
+- Include PBI acceptance criteria as comments in the code
+- Always include PBI ID in commit messages (e.g., `[PBI-001] Implement user authentication feature`)
+- Update PBI file status to "Done" when feature is completed
+
+### 2. Code Quality Standards
+- Document all functions and classes with JSDoc/Docstring format
+- Maintain test coverage above 80%
+- Always include error handling and logging
+- Implement security requirements based on acceptance criteria
+
+### 3. Branch & Commit Strategy
+- Branch naming: `feature/PBI-XXX-feature-name` or `bugfix/PBI-XXX-bug-name`
+- Pull request naming: `[PBI-XXX] Implementation of feature name`
+- Commit message format: `[PBI-XXX] Detailed description of changes`
+
+### 4. Testing Strategy
+- Implement unit tests, integration tests, and E2E tests progressively
+- Provide detailed error information when tests fail
+- Record test results in `docs/metrics/` folder
+
+## Documentation Management Rules
+
+### 1. Template Usage
+- For PBI creation: Use `docs/templates/product-backlog-item-template.md`
+- For daily standups: Use `docs/templates/daily-standup-template.md`
+- For progress reports: Use `docs/templates/progress-dashboard-template.md`
+
+### 2. Progress Management
+- Manage sprint information in `docs/sprints/sprint-XX/` folders
+- Auto-update burndown charts in `docs/burndown-charts/`
+- Track velocity in `docs/velocity-tracking/`
+
+### 3. AI Agent Integration
+- Manage agent configurations in `docs/ai-agents/agent-configs/`
+- Record execution logs in `docs/ai-agents/agent-logs/`
+- Monitor performance metrics in `docs/ai-agents/performance-metrics/`
+
+## Code Generation & Modification Guidelines
+
+### 1. Acceptance Criteria Implementation
+```
+When generating code, always include:
+- Implementation that meets PBI acceptance criteria
+- Proper error handling
+- Log output (debug, info, error levels)
+- Unit test code
+- Documentation comments
+```
+
+### 2. Security Considerations
+```
+- Input validation and sanitization
+- Proper authentication and authorization implementation
+- Appropriate handling of sensitive information
+- OWASP Top 10 vulnerability countermeasures
+```
+
+### 3. Performance Considerations
+```
+- Database query optimization
+- Cache strategy implementation
+- Asynchronous processing utilization
+- Resource usage monitoring
+```
+
+## Automation & CI/CD
+
+### 1. Continuous Integration
+```
+Auto-execute on pull request creation:
+- Code quality checks (ESLint, SonarQube, etc.)
+- Security scanning
+- All test execution
+- Documentation consistency checks
+```
+
+### 2. Scheduled Tasks
+```
+Execute daily at 6:00 PM:
+- Progress data collection and updates
+- Burndown chart generation
+- Progress dashboard updates
+- Risk analysis and alert generation
+```
+
+## Definition of Done
+
+### Feature Development Completion Criteria
+```
+✅ All PBI acceptance criteria are met
+✅ Unit and integration tests are successful
+✅ Code review is completed
+✅ Documentation is updated
+✅ Security checks are completed
+✅ Performance tests are completed
+✅ PBI status is updated to "Done"
+```
+
+## Error & Exception Handling
+
+### 1. Error Handling Strategy
+```
+- Properly catch and handle expected exceptions
+- Provide user-friendly error messages
+- Record detailed logs for system errors
+- Clarify recovery procedures for failures
+```
+
+### 2. Logging Standards
+```
+- DEBUG: Development debugging information
+- INFO: Normal processing flow
+- WARN: Situations requiring attention
+- ERROR: Detailed information when errors occur
+- FATAL: System shutdown level errors
+```
+
+## Communication
+
+### 1. Daily Standup Preparation
+```
+Prepare daily at 9:00 AM:
+- Tasks completed yesterday (by PBI)
+- Tasks planned for today
+- Blocker and issue identification
+- AI agent execution result summary
+```
+
+### 2. Stakeholder Reporting
+```
+Auto-generate weekly:
+- Progress summary report
+- Quality metrics report
+- Risk and issue list
+- Next week's plan overview
+```
+
+## Project-Specific Configuration
+
+```yaml
+# Project configuration (docs/ai-agents/project-config.yaml)
+project_name: "TestProject"
+sprint_length: 14  # days
+team_size: 5
+velocity_target: 50  # story points
+quality_threshold: 0.8
+test_coverage_threshold: 0.8
+automation_level: "high"
+```
+
+## Important Notes
+
+1. **PBI Priority**: Execute all development work linked to PBIs
+2. **Quality Focus**: Never neglect tests and documentation
+3. **Transparency**: Always visualize progress and issues
+4. **Continuous Improvement**: Identify and execute improvements in sprint retrospectives
+5. **AI Agent Utilization**: Actively automate routine tasks
+
+---
+Follow these rules to achieve efficient and high-quality Scrum development. 
