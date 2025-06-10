@@ -1,11 +1,16 @@
-# TestProject - スクラム開発設定
+# TestProject - テトリスゲーム開発設定
 
 # プロジェクト基本情報
 project:
-  name: "TestProject"
-  description: "AIエージェントを活用したスクラム開発プロジェクト"
+  name: "TestProject - Tetris Game"
+  description: "AIエージェントを活用したブラウザテトリスゲーム開発"
   version: "1.0.0"
   start_date: "2024-01-15"
+  technology_stack:
+    - "HTML5"
+    - "CSS3"
+    - "JavaScript (ES6+)"
+    - "Canvas API"
 
 # スプリント設定
 sprint:
@@ -14,6 +19,7 @@ sprint:
   start_time: "09:00"
   end_time: "18:00"
   timezone: "Asia/Tokyo"
+  current_sprint: 1
 
 # チーム設定
 team:
@@ -21,17 +27,18 @@ team:
   roles:
     - "Product Owner"
     - "Scrum Master"
-    - "Developer"
-    - "Tester"
-    - "Designer"
+    - "Frontend Developer"
+    - "Game Developer"
+    - "QA Tester"
 
 # ベロシティ・品質目標
 targets:
-  velocity: 50  # ストーリーポイント/スプリント
+  velocity: 15  # ストーリーポイント/スプリント（初回想定）
   quality_threshold: 0.8
   test_coverage_threshold: 0.8
   code_review_threshold: 1  # 最低レビュー人数
   bug_density_threshold: 0.1  # bugs/KLOC
+  performance_target: 60  # FPS
 
 # AIエージェント設定
 ai_agents:
@@ -43,6 +50,10 @@ ai_agents:
     quality_threshold: 0.8
     auto_commit: false
     auto_test: true
+    specialization:
+      - "JavaScript game development"
+      - "Canvas API"
+      - "Game loop optimization"
   
   testing_agent:
     enabled: true
@@ -51,7 +62,12 @@ ai_agents:
       - "unit"
       - "integration"
       - "e2e"
+      - "performance"
     coverage_threshold: 0.8
+    game_specific_tests:
+      - "tetromino_logic"
+      - "collision_detection"
+      - "line_clearing"
   
   documentation_agent:
     enabled: true
@@ -60,7 +76,10 @@ ai_agents:
     formats:
       - "markdown"
       - "html"
-      - "pdf"
+    focus_areas:
+      - "game_mechanics"
+      - "api_documentation"
+      - "user_guide"
   
   progress_tracking_agent:
     enabled: true
@@ -74,7 +93,7 @@ notifications:
     enabled: false
     webhook_url: ""
     channels:
-      - "#development"
+      - "#tetris-development"
       - "#scrum-updates"
   
   email:
@@ -88,18 +107,18 @@ notifications:
     test_coverage_drop: 0.1  # 10%
     build_failure_count: 3
     overdue_pbi: true
+    performance_degradation: true  # FPS低下
 
 # 品質ゲート設定
 quality_gates:
   code_quality:
-    sonarqube:
-      enabled: false
-      server_url: ""
-      quality_gate: "default"
-    
     eslint:
       enabled: true
       config: ".eslintrc.js"
+      rules:
+        - "no-unused-vars"
+        - "no-console"
+        - "prefer-const"
     
     prettier:
       enabled: true
@@ -107,13 +126,40 @@ quality_gates:
   
   security:
     dependency_check: true
-    vulnerability_scan: true
-    secret_detection: true
+    vulnerability_scan: false  # フロントエンドのみのため
+    secret_detection: false
   
   performance:
-    load_testing: false
-    performance_budget: true
+    fps_threshold: 60
+    memory_leak_detection: true
+    load_time_threshold: 2000  # ms
     lighthouse_score: 90
+
+# ゲーム固有設定
+game_settings:
+  tetris:
+    grid_size:
+      width: 10
+      height: 20
+    tetrominos:
+      - "I"
+      - "O" 
+      - "T"
+      - "S"
+      - "Z"
+      - "J"
+      - "L"
+    scoring:
+      single_line: 100
+      double_line: 300
+      triple_line: 500
+      tetris: 800
+    controls:
+      move_left: "ArrowLeft"
+      move_right: "ArrowRight"
+      rotate: "ArrowUp"
+      soft_drop: "ArrowDown"
+      hard_drop: "Space"
 
 # レポート設定
 reports:
@@ -126,11 +172,16 @@ reports:
     enabled: true
     update_frequency: "daily"
     template: "docs/templates/progress-dashboard-template.md"
+    game_metrics:
+      - "fps_performance"
+      - "memory_usage"
+      - "feature_completion"
   
   sprint_review:
     enabled: true
     auto_generate: true
     include_metrics: true
+    demo_preparation: true
   
   burndown_chart:
     enabled: true
@@ -148,6 +199,9 @@ paths:
   metrics: "docs/metrics/"
   ai_agents: "docs/ai-agents/"
   automation: "docs/automation/"
+  game_source: "src/"
+  game_assets: "assets/"
+  tests: "tests/"
 
 # 統合設定
 integrations:
@@ -155,35 +209,39 @@ integrations:
     enabled: false
     repository: ""
     branch_protection: true
+    auto_deploy_pages: true  # GitHub Pagesでのデモ公開
   
-  jira:
-    enabled: false
-    server_url: ""
-    project_key: ""
-  
-  confluence:
-    enabled: false
-    server_url: ""
-    space_key: ""
+  browser_testing:
+    enabled: true
+    browsers:
+      - "Chrome"
+      - "Firefox" 
+      - "Safari"
+      - "Edge"
+    mobile_testing: true
 
 # 環境設定
 environments:
   development:
     auto_deploy: true
     test_coverage_required: 0.7
+    debug_mode: true
+    fps_monitoring: true
   
   staging:
     auto_deploy: false
     test_coverage_required: 0.8
     performance_test: true
+    cross_browser_test: true
   
   production:
     auto_deploy: false
     test_coverage_required: 0.9
-    security_scan: true
     performance_test: true
+    minification: true
+    compression: true
 
 ---
 # 設定ファイル更新履歴
-# 2024-01-15: 初期設定作成
-# 2024-01-XX: [更新内容] 
+# 2024-01-15: テトリスゲーム開発用に初期設定作成
+# 2024-01-15: ゲーム固有設定、パフォーマンス監視設定追加 
